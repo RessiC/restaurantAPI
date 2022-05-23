@@ -45,6 +45,7 @@ class RestaurantTest extends TestCase
         $restaurant->addEmployee($employeeUser3);
 
         $this->assertContainsOnlyInstancesOf(EmployeeUser::class, $restaurant->getEmployees());
+        $this->assertCount(3, $restaurant->getEmployees());
     }
 
     public function testProduct()
@@ -60,5 +61,6 @@ class RestaurantTest extends TestCase
         $restaurant->addProduct($product3);
 
         $this->assertContainsOnlyInstancesOf(Product::class, $restaurant->getProducts());
+        $this->assertCount(3, $restaurant->getProducts());
     }
 }

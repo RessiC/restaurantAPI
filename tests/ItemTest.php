@@ -55,6 +55,7 @@ class ItemTest extends TestCase
         $item->addProduct($product3);
 
         $this->assertContainsOnlyInstancesOf(Product::class, $item->getProducts());
+        $this->assertCount(3, $item->getProducts());
     }
 
     public function testOrder()
@@ -69,5 +70,6 @@ class ItemTest extends TestCase
         $item->addOrder($order3);
 
         $this->assertContainsOnlyInstancesOf(Order::class, $item->getOrders());
+        $this->assertCount(3, $item->getOrders());
     }
 }
