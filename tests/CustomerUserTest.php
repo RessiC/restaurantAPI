@@ -21,6 +21,7 @@ class CustomerUserTest extends TestCase
     {
         $customerUser = new CustomerUser();
         $roleExcepted = ['ROLE_CUSTOMER'];
+
         $this->assertSame($roleExcepted, $customerUser->getRoles());
     }
 
@@ -28,6 +29,7 @@ class CustomerUserTest extends TestCase
     {
         $customerUser = new CustomerUser();
         $customerUser->setEmail('email@test.com');
-        $this->assertSame('email@test.com', $customerUser->getEmail(), 'assert is same');
+
+        $this->assertSame('email@test.com', $customerUser->getEmail());
     }
 }

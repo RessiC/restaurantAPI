@@ -26,6 +26,7 @@ class UserTest extends TestCase
     {
         $user = new User();
         $user->setEmail('email@test.com');
+
         $this->assertSame('email@test.com', $user->getEmail(), 'assert is same');
     }
 
