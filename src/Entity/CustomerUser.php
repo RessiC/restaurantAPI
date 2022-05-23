@@ -13,9 +13,4 @@ class CustomerUser extends User
 {
     const ROLE_CUSTOMER = ['ROLE_CUSTOMER'];
 
-    public function __construct()
-    {
-        $this->roles = self::ROLE_CUSTOMER;
-    }
-
 }

@@ -20,9 +20,9 @@ class CustomerUserTest extends TestCase
     public function testRole()
     {
         $customerUser = new CustomerUser();
-        $roleExcepted = ['ROLE_CUSTOMER'];
+        $customerUser->setRoles(CustomerUser::ROLE_CUSTOMER);
 
-        $this->assertSame($roleExcepted, $customerUser->getRoles());
+        $this->assertSame(CustomerUser::ROLE_CUSTOMER, $customerUser->getRoles());
     }
 
     public function testEmail()

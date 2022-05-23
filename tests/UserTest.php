@@ -17,9 +17,8 @@ class UserTest extends TestCase
     {
         $user = new User();
         $user->setRoles(User::ROLE_USER);
-        $roleExcepted = ['ROLE_USER'];
 
-        $this->assertSame($roleExcepted, $user->getRoles());
+        $this->assertSame(User::ROLE_USER, $user->getRoles());
     }
 
     public function testEmail()
@@ -27,7 +26,7 @@ class UserTest extends TestCase
         $user = new User();
         $user->setEmail('email@test.com');
 
-        $this->assertSame('email@test.com', $user->getEmail(), 'assert is same');
+        $this->assertSame('email@test.com', $user->getEmail());
     }
 
 

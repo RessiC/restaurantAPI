@@ -19,17 +19,17 @@ class EmployeeUserTest extends TestCase
 
     public function testRole()
     {
-        $EmployeeUser = new EmployeeUser();
-        $roleExcepted = ['ROLE_EMPLOYEE'];
+        $employeeUser = new EmployeeUser();
+        $employeeUser->setRoles(EmployeeUser::ROLE_EMPLOYEE);
 
-        $this->assertSame($roleExcepted, $EmployeeUser->getRoles());
+        $this->assertSame(EmployeeUser::ROLE_EMPLOYEE, $employeeUser->getRoles());
     }
 
     public function testEmail()
     {
-        $EmployeeUser = new EmployeeUser();
-        $EmployeeUser->setEmail('email@test.com');
+        $employeeUser = new EmployeeUser();
+        $employeeUser->setEmail('email@test.com');
 
-        $this->assertSame('email@test.com', $EmployeeUser->getEmail());
+        $this->assertSame('email@test.com', $employeeUser->getEmail());
     }
 }
