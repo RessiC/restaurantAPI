@@ -10,6 +10,7 @@ class AdminUserTest extends TestCase
     public function testCreate(): void
     {
         $AdminUser = new AdminUser();
+
         $this->assertInstanceOf(AdminUser::class, $AdminUser);
     }
 
@@ -28,6 +29,4 @@ class AdminUserTest extends TestCase
 
         $this->assertSame('email@test.com', $AdminUser->getEmail());
     }
-
-
 }
