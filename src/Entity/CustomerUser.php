@@ -10,11 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class CustomerUser extends User
 {
-    const CUSTOMER_ROLE = 'ROLE_CUSTOMER';
+    const ROLE_CUSTOMER = ['ROLE_CUSTOMER'];
 
     public function __construct()
     {
-        $this->roles = [self::CUSTOMER_ROLE];
+        $this->roles = self::ROLE_CUSTOMER;
     }
 
 }

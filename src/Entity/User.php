@@ -13,6 +13,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    const ROLE_USER = ['ROLE_USER'];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -82,7 +84,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
         return $this;
     }
 
