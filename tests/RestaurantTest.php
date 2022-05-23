@@ -3,16 +3,12 @@
 namespace App\Tests;
 
 use App\Entity\EmployeeUser;
+use App\Entity\Product;
 use App\Entity\Restaurant;
 use PHPUnit\Framework\TestCase;
 
 class RestaurantTest extends TestCase
 {
-    public function testSomething(): void
-    {
-        $this->assertTrue(true);
-    }
-
     public function testCreate()
     {
         $restaurant = new Restaurant();
@@ -23,8 +19,8 @@ class RestaurantTest extends TestCase
     public function testName()
     {
         $restaurant = new Restaurant();
-
         $restaurant->setName('nom du restaurant 1');
+
         $this->assertSame('nom du restaurant 1', $restaurant->getName());
     }
 
@@ -51,5 +47,22 @@ class RestaurantTest extends TestCase
         $restaurant->addEmployee($employeeUser4);
 
         $this->assertContainsOnlyInstancesOf(EmployeeUser::class, $restaurant->getEmployees());
+    }
+
+    public function testProduct()
+    {
+        $restaurant = new Restaurant();
+
+        $product1 = new Product();
+        $product2 = new Product();
+        $product3 = new Product();
+        $product4 = new Product();
+
+        $restaurant->addProduct($product1);
+        $restaurant->addProduct($product2);
+        $restaurant->addProduct($product3);
+        $restaurant->addProduct($product4);
+
+        $this->assertContainsOnlyInstancesOf(Product::class, $restaurant->getProducts());
     }
 }
