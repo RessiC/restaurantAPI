@@ -39,12 +39,10 @@ class RestaurantTest extends TestCase
         $employeeUser1 = new EmployeeUser();
         $employeeUser2 = new EmployeeUser();
         $employeeUser3 = new EmployeeUser();
-        $employeeUser4 = new EmployeeUser();
 
         $restaurant->addEmployee($employeeUser1);
         $restaurant->addEmployee($employeeUser2);
         $restaurant->addEmployee($employeeUser3);
-        $restaurant->addEmployee($employeeUser4);
 
         $this->assertContainsOnlyInstancesOf(EmployeeUser::class, $restaurant->getEmployees());
     }
@@ -56,12 +54,10 @@ class RestaurantTest extends TestCase
         $product1 = new Product();
         $product2 = new Product();
         $product3 = new Product();
-        $product4 = new Product();
 
         $restaurant->addProduct($product1);
         $restaurant->addProduct($product2);
         $restaurant->addProduct($product3);
-        $restaurant->addProduct($product4);
 
         $this->assertContainsOnlyInstancesOf(Product::class, $restaurant->getProducts());
     }
