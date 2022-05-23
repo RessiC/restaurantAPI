@@ -2,16 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\ProductRepository;
+use App\Repository\ItemRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ProductRepository::class)
- * @ORM\Table(name="product")
+ * @ORM\Entity(repositoryClass=ItemRepository::class)
+ * @ORM\Table(name="item")
  */
-class Product
+class Item
 {
     /**
      * @ORM\Id
@@ -26,18 +26,23 @@ class Product
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Restaurant::class, inversedBy="products")
+     * @ORM\Column(type="float")
+     */
+    private $price;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Restaurant::class, inversedBy="items")
      */
     private $restaurant;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Item::class, inversedBy="items")
+     * @ORM\ManyToMany(targetEntity=Product::class, mappedBy="products")
      */
-    private $items;
+    private $products;
 
     public function __construct()
     {
-        $this->items = new ArrayCollection();
+        $this->products = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -57,6 +62,18 @@ class Product
         return $this;
     }
 
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
     public function getRestaurant(): ?Restaurant
     {
         return $this->restaurant;
@@ -70,28 +87,25 @@ class Product
     }
 
     /**
-     * @return Collection<int, Item>
+     * @return Collection<int, Product>
      */
-    public function getItems(): Collection
+    public function getProducts(): Collection
     {
-        return $this->items;
+        return $this->products;
     }
 
-    public function addItem(Item $item): self
+    public function addProduct(Product $product): self
     {
-        if (!$this->items->contains($item)) {
-            $this->items[] = $item;
-            $item->addProduct($this);
+        if (!$this->products->contains($product)) {
+            $this->products[] = $product;
         }
 
         return $this;
     }
 
-    public function removeItem(Item $item): self
+    public function removeProduct(Product $product): self
     {
-        if ($this->items->removeElement($item)) {
-            $item->removeProduct($this);
-        }
+        $this->products->removeElement($product);
 
         return $this;
     }
