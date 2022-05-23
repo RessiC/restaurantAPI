@@ -10,21 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class CustomerUser extends User
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    const CUSTOMER_ROLE = 'ROLE_CUSTOMER';
 
-    public function getId(): ?int
+    public function __construct()
     {
-        return $this->id;
+        $this->roles = [self::CUSTOMER_ROLE];
     }
 
-    public function setRoles(array $roles): CustomerUser
-    {
-        $this->roles = ['ROLE_CUSTOMER'];
-        return $this;
-    }
 }
