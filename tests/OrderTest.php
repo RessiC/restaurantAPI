@@ -31,14 +31,13 @@ class OrderTest extends TestCase
         $item1 = new Item();
         $item2 = new Item();
         $item3 = new Item();
-        $item4 = new Item();
 
         $order->addItem($item1);
         $order->addItem($item2);
         $order->addItem($item3);
-        $order->addItem($item4);
 
         $this->assertContainsOnlyInstancesOf(Item::class, $order->getItems());
+        $this->assertCount(3, $order->getItems());
     }
 
     public function testReadyAt()
@@ -55,9 +54,9 @@ class OrderTest extends TestCase
     {
         $order = new Order;
         $paidAt = new \DateTime('now');
-        $order->setReadyAt($paidAt);
+        $order->setPaidAt($paidAt);
 
-        $this->assertSame($paidAt, $order->getReadyAt());
+        $this->assertSame($paidAt, $order->getPaidAt());
         $this->assertInstanceOf(\DateTime::class, $paidAt);
     }
 

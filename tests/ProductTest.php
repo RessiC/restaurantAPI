@@ -31,6 +31,7 @@ class ProductTest extends TestCase
         $product->setRestaurant($restaurant);
 
         $this->assertInstanceOf(Restaurant::class, $product->getRestaurant());
+        $this->assertEquals($restaurant, $product->getRestaurant());
     }
 
     public function testItem()
@@ -40,13 +41,12 @@ class ProductTest extends TestCase
         $item1 = new Item();
         $item2 = new Item();
         $item3 = new Item();
-        $item4 = new Item();
 
         $product->addItem($item1);
         $product->addItem($item2);
         $product->addItem($item3);
-        $product->addItem($item4);
 
         $this->assertContainsOnlyInstancesOf(Item::class, $product->getItems());
+        $this->assertCount(3, $product->getItems());
     }
 }

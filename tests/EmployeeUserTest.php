@@ -14,7 +14,6 @@ class EmployeeUserTest extends TestCase
         $EmployeeUser = new EmployeeUser();
 
         $this->assertNotNull($EmployeeUser);
-        $this->assertEquals(true, $EmployeeUser instanceof EmployeeUser);
         $this->assertEquals(true, $EmployeeUser instanceof User);
     }
 
@@ -31,7 +30,7 @@ class EmployeeUserTest extends TestCase
         $employeeUser = new EmployeeUser();
         $employeeUser->setEmail('email@test.com');
 
-        $this->assertSame('email@test.com', $employeeUser->getEmail());
+        $this->assertEquals('email@test.com', $employeeUser->getEmail());
     }
 
     public function testRestaurant()
