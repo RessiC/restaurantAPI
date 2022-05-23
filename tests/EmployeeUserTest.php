@@ -3,6 +3,7 @@
 namespace App\Tests;
 
 use App\Entity\EmployeeUser;
+use App\Entity\Restaurant;
 use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
@@ -31,5 +32,16 @@ class EmployeeUserTest extends TestCase
         $employeeUser->setEmail('email@test.com');
 
         $this->assertSame('email@test.com', $employeeUser->getEmail());
+    }
+
+    public function testRestaurant()
+    {
+        $employeeUser = new EmployeeUser();
+        $restaurant = new Restaurant();
+
+        $employeeUser->setRestaurant($restaurant);
+
+        $this->assertEquals($restaurant, $employeeUser->getRestaurant());
+        $this->assertInstanceOf(Restaurant::class, $employeeUser->getRestaurant());
     }
 }
