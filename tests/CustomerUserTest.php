@@ -3,14 +3,18 @@
 namespace App\Tests;
 
 use App\Entity\CustomerUser;
+use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
 class CustomerUserTest extends TestCase
 {
-    public function testCreate()
+    public function test__construct()
     {
         $customerUser = new CustomerUser();
-        $this->assertInstanceOf(CustomerUser::class, $customerUser);
+
+        $this->assertNotNull($customerUser);
+        $this->assertEquals(true, $customerUser instanceof CustomerUser);
+        $this->assertEquals(true, $customerUser instanceof User);
     }
 
     public function testRole()
