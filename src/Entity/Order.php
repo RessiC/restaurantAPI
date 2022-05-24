@@ -55,6 +55,11 @@ class Order
      */
     private $status;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Restaurant::class, inversedBy="orders")
+     */
+    private $restaurant;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -157,6 +162,18 @@ class Order
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getRestaurant(): ?Restaurant
+    {
+        return $this->restaurant;
+    }
+
+    public function setRestaurant(?Restaurant $restaurant): self
+    {
+        $this->restaurant = $restaurant;
 
         return $this;
     }
