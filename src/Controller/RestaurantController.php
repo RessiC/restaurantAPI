@@ -4,61 +4,59 @@ namespace App\Controller;
 
 use App\Entity\Restaurant;
 use App\Service\Admin\RestaurantService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
-class RestaurantController extends AbstractController
+class RestaurantController extends AbstractFOSRestController
 {
     /**
-     * @Route("/restaurants/{id}", name="restaurant_get", methods={"GET"})
+     * @Rest\Get("/restaurants", name="restaurant_get_all")
+     * @Rest\View()
      */
-    public function getRestaurant(int $id, RestaurantService $restaurantService): Response
+    public function getRestaurants(RestaurantService $restaurantService)
     {
-        $restaurant = $restaurantService->getRestaurant($id);
-        $response = new Response($restaurant, Response::HTTP_OK);
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+        return $restaurantService->getRestaurants();
     }
 
     /**
-     * @Route("/restaurants", name="restaurants_all", methods={"GET"})
+     * @Rest\Post("/restaurants", name="restaurant_post")
+     * @ParamConverter("restaurant", converter="fos_rest.request_body")
+     * @Rest\View()
      */
-    public function getRestaurants(RestaurantService $restaurantService): Response
+    public function postRestaurant(Restaurant $restaurant, RestaurantService $restaurantService): Restaurant
     {
-        $restaurants = $restaurantService->getRestaurants();
-        $response = new Response($restaurants, Response::HTTP_OK);
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+        $restaurantService->createRestaurant($restaurant);
+        return $restaurant;
     }
 
     /**
-     * @Route("/restaurants", name="restaurant_post", methods={"POST"})
+     * @Rest\Delete("/restaurants/{id}", name="restaurant_delete")
+     * @Rest\View()
      */
-    public function postRestaurant(Request $request, RestaurantService $restaurantService): Response
+    public function deleteRestaurant(Restaurant  $restaurant, RestaurantService $restaurantService)
     {
-        $restaurantService->createRestaurant($request);
-        return new Response('', Response::HTTP_CREATED);
+        $restaurantService->deleteRestaurant($restaurant);
     }
 
     /**
-     * @Route("/restaurants/{id}", name="restaurant_edit", methods={"PUT"})
+     * @Rest\Get("/restaurants/{id}", name="restaurant_get", requirements={"id"="\d+"})
+     * @Rest\View()
      */
-    public function editRestaurant(int $id, Request $request, RestaurantService $restaurantService): Response
+    public function getRestaurant(Restaurant $restaurant): Restaurant
     {
-        $restaurantService->editRestaurant($id, $request);
-        $response = new Response('', Response::HTTP_OK);
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+        return $restaurant;
     }
 
     /**
-     * @Route("/restaurants/{id}", name="restaurant_delete", methods={"DELETE"})
+     * @Rest\Put("/restaurants/{id}", name="restaurant_edit", requirements={"id"="\d+"})
+     * @ParamConverter("restaurant", converter="fos_rest.request_body")
+     * @Rest\View()
      */
-    public function deleteRestaurant(int $id, RestaurantService $restaurantService): Response
+    public function editRestaurant(Restaurant $existingRestaurant, Restaurant $restaurant, RestaurantService $restaurantService): Restaurant
     {
-        $restaurantService->deleteRestaurant($id);
-        return new Response('', Response::HTTP_OK);
+        $restaurantService->editRestaurant($existingRestaurant, $restaurant);
+        return $existingRestaurant;
     }
 }

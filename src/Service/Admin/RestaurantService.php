@@ -5,70 +5,48 @@ namespace App\Service\Admin;
 use App\Entity\Restaurant;
 use App\Repository\RestaurantRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use JMS\Serializer\SerializerInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 class RestaurantService
 {
     private RestaurantRepository $restaurantRepository;
     private ManagerRegistry $managerRegistry;
-    private SerializerInterface $serializer;
 
-    /**
-     * @param RestaurantRepository $restaurantRepository
-     * @param ManagerRegistry $managerRegistry
-     * @param SerializerInterface $serializer
-     */
-    public function __construct(
-        RestaurantRepository $restaurantRepository,
-        ManagerRegistry $managerRegistry,
-        SerializerInterface $serializer
-    ) {
+    public function __construct(RestaurantRepository $restaurantRepository, ManagerRegistry $managerRegistry)
+    {
         $this->restaurantRepository = $restaurantRepository;
         $this->managerRegistry = $managerRegistry;
-        $this->serializer = $serializer;
     }
 
-    public function createRestaurant(Request $request)
-    {
-        $restaurant = $this->serializer->deserialize($request->getContent(), Restaurant::class, "json");
-        $entityManager = $this->managerRegistry->getManager();
 
+    public function createRestaurant(Restaurant $restaurant)
+    {
+        $entityManager = $this->managerRegistry->getManager();
         $entityManager->persist($restaurant);
         $entityManager->flush();
     }
 
-    public function getRestaurant(int $id): string
+    public function getRestaurant(int $id): ?Restaurant
     {
-        $restaurant = $this->restaurantRepository->findOneBy(["id"=>$id]);
-
-        return $this->serializer->serialize($restaurant, 'json');
+        return $this->restaurantRepository->findOneBy(["id" => $id]);
     }
 
-    public function getRestaurants(): string
+    public function getRestaurants(): array
     {
-        $restaurants = $this->restaurantRepository->findAll();
-
-        return $this->serializer->serialize($restaurants, 'json');
+        return $this->restaurantRepository->findAll();
     }
 
-    public function editRestaurant(int $id, Request $request): void
+    public function editRestaurant(Restaurant $existingRestaurant, Restaurant $modifiedRestaurant)
     {
-        /** @var Restaurant $givenRestaurant */
-        $givenRestaurant = $this->serializer->deserialize($request->getContent(), Restaurant::class, "json");
-        $existingRestaurant = $this->restaurantRepository->findOneBy(["id" => $id]);
-
-        $existingRestaurant->setName($givenRestaurant->getName());
-        $existingRestaurant->setAddress($givenRestaurant->getAddress());
+        $existingRestaurant->setAddress($modifiedRestaurant->getAddress());
+        $existingRestaurant->setName($modifiedRestaurant->getName());
 
         $entityManager = $this->managerRegistry->getManager();
         $entityManager->persist($existingRestaurant);
         $entityManager->flush();
     }
 
-    public function deleteRestaurant(int $id): void
+    public function deleteRestaurant(Restaurant $restaurant): void
     {
-        $restaurant = $this->restaurantRepository->findOneBy(["id" => $id]);
         $entityManager = $this->managerRegistry->getManager();
         $entityManager->remove($restaurant);
         $entityManager->flush();
