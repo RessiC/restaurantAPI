@@ -17,7 +17,6 @@ class RestaurantController extends AbstractController
     public function getRestaurant(int $id, RestaurantService $restaurantService): Response
     {
         $restaurant = $restaurantService->getRestaurant($id);
-
         $response = new Response($restaurant);
         $response->headers->set('Content-Type', 'application/json');
         return $response;
@@ -29,7 +28,6 @@ class RestaurantController extends AbstractController
     public function getRestaurants(RestaurantService $restaurantService): Response
     {
         $restaurants = $restaurantService->getRestaurants();
-
         $response = new Response($restaurants);
         $response->headers->set('Content-Type', 'application/json');
         return $response;
@@ -41,7 +39,6 @@ class RestaurantController extends AbstractController
     public function postRestaurant(Request $request, RestaurantService $restaurantService): Response
     {
         $restaurantService->createRestaurant($request);
-
         return new Response('', Response::HTTP_CREATED);
     }
 
@@ -51,7 +48,6 @@ class RestaurantController extends AbstractController
     public function editRestaurant(int $id, Request $request, RestaurantService $restaurantService): Response
     {
         $restaurantService->editRestaurant($id, $request);
-
         $response = new Response();
         $response->headers->set('Content-Type', 'application/json');
         return $response;
