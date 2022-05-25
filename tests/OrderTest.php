@@ -5,7 +5,7 @@ namespace App\Tests;
 use App\Entity\User\CustomerUser;
 use App\Entity\Item;
 use App\Entity\Order;
-use App\Entity\Restaurant;
+use App\Entity\Restaurant\Restaurant;
 use PHPUnit\Framework\TestCase;
 
 class OrderTest extends TestCase

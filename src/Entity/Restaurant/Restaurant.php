@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Restaurant;
 
-use App\Repository\RestaurantRepository;
+use App\Repository\Restaurant\RestaurantRepository;
 use App\Entity\User\EmployeeUser;
+use App\Entity\Product;
+use App\Entity\Item;
+use App\Entity\Order;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass=RestaurantRepository::class)

@@ -2,8 +2,7 @@
 
 namespace App\Entity\User;
 
-use App\Entity\User\User;
-use App\Entity\Restaurant;
+use App\Entity\Restaurant\Restaurant;
 use App\Repository\User\EmployeeUserRepository;
 use Doctrine\ORM\Mapping as ORM;
 

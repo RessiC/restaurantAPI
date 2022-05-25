@@ -6,7 +6,7 @@ use App\Entity\User\EmployeeUser;
 use App\Entity\Item;
 use App\Entity\Order;
 use App\Entity\Product;
-use App\Entity\Restaurant;
+use App\Entity\Restaurant\Restaurant;
 use PHPUnit\Framework\TestCase;
 
 class RestaurantTest extends TestCase

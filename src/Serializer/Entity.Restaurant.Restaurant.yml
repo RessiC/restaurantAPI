@@ -1,4 +1,4 @@
-App\Entity\Restaurant:
+App\Entity\Restaurant\Restaurant:
   exclusion_policy: ALL
   access_type: public_method
   properties:

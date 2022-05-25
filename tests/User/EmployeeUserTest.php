@@ -3,7 +3,7 @@
 namespace App\Tests\User;
 
 use App\Entity\User\EmployeeUser;
-use App\Entity\Restaurant;
+use App\Entity\Restaurant\Restaurant;
 use App\Entity\User\User;
 use PHPUnit\Framework\TestCase;
 

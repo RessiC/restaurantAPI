@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Service\Admin;
+namespace App\Service;
 
-use App\Entity\Restaurant;
-use App\Repository\RestaurantRepository;
+use App\Entity\Restaurant\Restaurant;
+use App\Repository\Restaurant\RestaurantRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 class RestaurantService
