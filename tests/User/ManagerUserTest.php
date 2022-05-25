@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\User;
 
-use App\Entity\EmployeeUser;
-use App\Entity\ManagerUser;
-use App\Entity\User;
+use App\Entity\User\EmployeeUser;
+use App\Entity\User\ManagerUser;
+use App\Entity\User\User;
 use PHPUnit\Framework\TestCase;
 
 class ManagerUserTest extends TestCase

@@ -2,7 +2,7 @@
 
 namespace App\Tests;
 
-use App\Entity\CustomerUser;
+use App\Entity\User\CustomerUser;
 use App\Entity\Item;
 use App\Entity\Order;
 use App\Entity\Restaurant;

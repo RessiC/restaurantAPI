@@ -2,7 +2,7 @@
 
 namespace App\Tests;
 
-use App\Entity\EmployeeUser;
+use App\Entity\User\EmployeeUser;
 use App\Entity\Item;
 use App\Entity\Order;
 use App\Entity\Product;

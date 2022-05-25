@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\User;
 
-use App\Entity\CustomerUser;
-use App\Entity\User;
+use App\Entity\User\CustomerUser;
+use App\Entity\User\User;
 use PHPUnit\Framework\TestCase;
 
 class CustomerUserTest extends TestCase

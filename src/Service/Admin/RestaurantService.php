@@ -17,7 +17,6 @@ class RestaurantService
         $this->managerRegistry = $managerRegistry;
     }
 
-
     public function createRestaurant(Restaurant $restaurant)
     {
         $entityManager = $this->managerRegistry->getManager();
@@ -32,7 +31,7 @@ class RestaurantService
 
     public function getRestaurants(): array
     {
-        return $this->restaurantRepository->findAll();
+        return $this->restaurantRepository->findAllWithLimit(20);
     }
 
     public function editRestaurant(Restaurant $existingRestaurant, Restaurant $modifiedRestaurant)

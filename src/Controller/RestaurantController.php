@@ -7,7 +7,6 @@ use App\Service\Admin\RestaurantService;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\HttpFoundation\Request;
 
 class RestaurantController extends AbstractFOSRestController
 {
@@ -18,6 +17,15 @@ class RestaurantController extends AbstractFOSRestController
     public function getRestaurants(RestaurantService $restaurantService)
     {
         return $restaurantService->getRestaurants();
+    }
+
+    /**
+     * @Rest\Get("/restaurants/{id}", name="restaurant_get", requirements={"id"="\d+"})
+     * @Rest\View()
+     */
+    public function getRestaurant(Restaurant $restaurant): Restaurant
+    {
+        return $restaurant;
     }
 
     /**
@@ -32,24 +40,6 @@ class RestaurantController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Delete("/restaurants/{id}", name="restaurant_delete")
-     * @Rest\View()
-     */
-    public function deleteRestaurant(Restaurant  $restaurant, RestaurantService $restaurantService)
-    {
-        $restaurantService->deleteRestaurant($restaurant);
-    }
-
-    /**
-     * @Rest\Get("/restaurants/{id}", name="restaurant_get", requirements={"id"="\d+"})
-     * @Rest\View()
-     */
-    public function getRestaurant(Restaurant $restaurant): Restaurant
-    {
-        return $restaurant;
-    }
-
-    /**
      * @Rest\Put("/restaurants/{id}", name="restaurant_edit", requirements={"id"="\d+"})
      * @ParamConverter("restaurant", converter="fos_rest.request_body")
      * @Rest\View()
@@ -58,5 +48,14 @@ class RestaurantController extends AbstractFOSRestController
     {
         $restaurantService->editRestaurant($existingRestaurant, $restaurant);
         return $existingRestaurant;
+    }
+
+    /**
+     * @Rest\Delete("/restaurants/{id}", name="restaurant_delete")
+     * @Rest\View()
+     */
+    public function deleteRestaurant(Restaurant  $restaurant, RestaurantService $restaurantService)
+    {
+        $restaurantService->deleteRestaurant($restaurant);
     }
 }
