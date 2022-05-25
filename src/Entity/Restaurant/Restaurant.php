@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Restaurant;
 
-use App\Repository\RestaurantRepository;
+use App\Repository\Restaurant\RestaurantRepository;
+use App\Entity\User\EmployeeUser;
+use App\Entity\Product;
+use App\Entity\Item;
+use App\Entity\Order;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -45,16 +49,29 @@ class Restaurant
      */
     private $items;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="restaurant")
+     */
+    private $orders;
+
     public function __construct()
     {
         $this->employees = new ArrayCollection();
         $this->products = new ArrayCollection();
         $this->items = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -165,6 +182,36 @@ class Restaurant
             // set the owning side to null (unless already changed)
             if ($item->getRestaurant() === $this) {
                 $item->setRestaurant(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getRestaurant() === $this) {
+                $order->setRestaurant(null);
             }
         }
 

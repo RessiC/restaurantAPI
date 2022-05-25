@@ -2,9 +2,11 @@
 
 namespace App\Tests;
 
-use App\Entity\EmployeeUser;
+use App\Entity\User\EmployeeUser;
+use App\Entity\Item;
+use App\Entity\Order;
 use App\Entity\Product;
-use App\Entity\Restaurant;
+use App\Entity\Restaurant\Restaurant;
 use PHPUnit\Framework\TestCase;
 
 class RestaurantTest extends TestCase
@@ -62,5 +64,38 @@ class RestaurantTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(Product::class, $restaurant->getProducts());
         $this->assertCount(3, $restaurant->getProducts());
+    }
+
+    public function testItem()
+    {
+        $restaurant = new Restaurant();
+
+        $item1= new Item();
+        $item2= new Item();
+        $item3= new Item();
+
+
+        $restaurant->addItem($item1);
+        $restaurant->addItem($item2);
+        $restaurant->addItem($item3);
+
+        $this->assertContainsOnlyInstancesOf(Item::class, $restaurant->getItems());
+        $this->assertCount(3, $restaurant->getItems());
+    }
+
+    public function testOrder()
+    {
+        $restaurant = new Restaurant();
+
+        $order1 = new Order();
+        $order2 = new Order();
+        $order3 = new Order();
+
+        $restaurant->addOrder($order1);
+        $restaurant->addOrder($order2);
+        $restaurant->addOrder($order3);
+
+        $this->assertContainsOnlyInstancesOf(Order::class, $restaurant->getOrders());
+        $this->assertCount(3, $restaurant->getOrders());
     }
 }

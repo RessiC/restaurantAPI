@@ -4,7 +4,7 @@ namespace App\Tests;
 
 use App\Entity\Item;
 use App\Entity\Product;
-use App\Entity\Restaurant;
+use App\Entity\Restaurant\Restaurant;
 use PHPUnit\Framework\TestCase;
 
 class ProductTest extends TestCase

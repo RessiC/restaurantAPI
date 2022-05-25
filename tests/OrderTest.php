@@ -2,9 +2,10 @@
 
 namespace App\Tests;
 
-use App\Entity\CustomerUser;
+use App\Entity\User\CustomerUser;
 use App\Entity\Item;
 use App\Entity\Order;
+use App\Entity\Restaurant\Restaurant;
 use PHPUnit\Framework\TestCase;
 
 class OrderTest extends TestCase
@@ -20,8 +21,8 @@ class OrderTest extends TestCase
 
         $this->assertSame($orderAt, $order->getOrderAt());
         $this->assertInstanceOf(Order::class, $order);
-        $this->assertInstanceOf(CustomerUser::class, $customerUser);
-        $this->assertInstanceOf(\DateTime::class, $orderAt);
+        $this->assertInstanceOf(CustomerUser::class, $order->getCustomerUser());
+        $this->assertInstanceOf(\DateTime::class, $order->getOrderAt());
     }
 
     public function testItems()
@@ -66,5 +67,16 @@ class OrderTest extends TestCase
         $order->setStatus('paid');
 
         $this->assertSame('paid', $order->getStatus());
+    }
+
+    public function testRestaurant()
+    {
+        $order = new Order;
+        $restaurant = new Restaurant();
+
+        $order->setRestaurant($restaurant);
+
+        $this->assertInstanceOf(Restaurant::class, $order->getRestaurant());
+        $this->assertSame($restaurant, $order->getRestaurant());
     }
 }

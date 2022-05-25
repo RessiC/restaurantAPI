@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\User;
 
-use App\Repository\EmployeeUserRepository;
+use App\Entity\Restaurant\Restaurant;
+use App\Repository\User\EmployeeUserRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 

@@ -1,0 +1,36 @@
+App\Entity\Restaurant\Restaurant:
+  exclusion_policy: ALL
+  access_type: public_method
+  properties:
+    id:
+      expose: true
+      type: int
+    name:
+      expose: true
+      type: string
+    employees:
+      expose: true
+      type: ArrayCollection<App\Entity\User\EmployeeUser>
+      accessor:
+        getter: getEmployees
+        setter: addEmployee
+    products:
+      expose: true
+      type: ArrayCollection<App\Entity\Product>
+      accessor:
+        getter: getProducts
+        setter: addProduct
+    items:
+      expose: true
+      type: ArrayCollection<App\Entity\Item>
+      accessor:
+        getter: getItems
+        setter: addItem
+    orders:
+      expose: true
+      type: ArrayCollection<App\Entity\Order>
+      accessor:
+        getter: getOrders
+        setter: addOrder
+    
+
