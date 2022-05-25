@@ -29,8 +29,19 @@ class ProductService
         $entityManager->flush();
     }
 
-    public function editProductForRestaurant(Product $product, Restaurant $restaurant)
+    public function editProductForRestaurant(Product $existingProduct, Product $modifiedProduct, Restaurant $restaurant)
     {
+        $existingProduct->setName($modifiedProduct->getName());
+        $existingProduct->setRestaurant($restaurant);
 
+        $entityManager = $this->managerRegistry->getManager();
+        $entityManager->persist($existingProduct);
+        $entityManager->flush();
+    }
+
+    public function deleteProduct(Product $product)
+    {
+        $entityManager = $this->managerRegistry->getManager();
+        $entityManager->remove($product);
     }
 }

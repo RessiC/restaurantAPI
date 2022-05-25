@@ -21,15 +21,6 @@ class ProductController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Get("/restaurants/{id}/products/{product}", name="restaurant_product_get", requirements={"id"="\d+", "product"="\d+"})
-     * @Rest\View()
-     */
-    public function getProductByRestaurant(Restaurant $restaurant, Product $product)
-    {
-        return $product;
-    }
-
-    /**
      * @Rest\Post("/restaurants/{id}/products", name="restaurant_product_post", requirements={"id"="\d+"})
      * @ParamConverter("product", converter="fos_rest.request_body")
      * @Rest\View()
@@ -41,13 +32,40 @@ class ProductController extends AbstractFOSRestController
     }
 
     /**
-     *
+     * @Rest\Get("/restaurants/{id}/products/{product}", name="restaurant_product_get", requirements={"id"="\d+", "product"="\d+"})
+     * @Rest\View()
      */
-    public function editProductForRestaurant(Restaurant $restaurant, Product $existingProduct, ProductService $productService): Product
+    public function getProductByRestaurant(Restaurant $restaurant, Product $product)
     {
-        $productService->editProductForRestaurant($existingProduct, $restaurant);
+        return $product;
+    }
+
+    /**
+     * @Rest\Put("/restaurants/{id}/products/{product}", name="restaurant_product_edit", requirements={"id"="\d+", "product"="\d+"})
+     * @ParamConverter("product", converter="fos_rest.request_body")
+     * @Rest\View()
+     */
+    public function editProductForRestaurant(Restaurant $restaurant, Product $existingProduct, Product $product, ProductService $productService): Product
+    {
+        $productService->editProductForRestaurant($existingProduct, $product, $restaurant);
         return $existingProduct;
     }
+
+    /**
+     * @Rest\Delete("restaurants/{id}/products/{product}", name="restaurant_product_delete", requirements={"id"="\d+", "product"="\d+"})
+     * @Rest\View()
+     */
+    public function deleteProduct(Restaurant $restaurant, Product $product, ProductService $productService)
+    {
+        //todo check if $restaurant has $product
+        $productService->deleteProduct($product);
+    }
+
+
+
+
+
+
 
 
 
