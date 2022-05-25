@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Restaurant;
 
 use App\Entity\Restaurant\Restaurant;
 use App\Repository\ProductRepository;

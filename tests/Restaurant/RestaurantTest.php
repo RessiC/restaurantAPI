@@ -3,9 +3,9 @@
 namespace App\Tests;
 
 use App\Entity\User\EmployeeUser;
-use App\Entity\Item;
+use App\Entity\Restaurant\Item;
 use App\Entity\Order;
-use App\Entity\Product;
+use App\Entity\Restaurant\Product;
 use App\Entity\Restaurant\Restaurant;
 use PHPUnit\Framework\TestCase;
 

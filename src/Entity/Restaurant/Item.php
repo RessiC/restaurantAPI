@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Restaurant;
 
-use App\Repository\ItemRepository;
-use App\Entity\Restaurant\Restaurant;
+use App\Repository\Restaurant\ItemRepository;
+use App\Entity\Order;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
