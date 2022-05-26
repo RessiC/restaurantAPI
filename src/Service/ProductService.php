@@ -4,21 +4,16 @@ namespace App\Service;
 
 use App\Entity\Restaurant\Product;
 use App\Entity\Restaurant\Restaurant;
-use App\Repository\Restaurant\ProductRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 class ProductService
 {
-    private ProductRepository $productRepository;
     private ManagerRegistry $managerRegistry;
 
-
-    public function __construct(ProductRepository $productRepository, ManagerRegistry $managerRegistry)
+    public function __construct(ManagerRegistry $managerRegistry)
     {
-        $this->productRepository = $productRepository;
         $this->managerRegistry = $managerRegistry;
     }
-
 
     public function createProductForRestaurant(Product $product, Restaurant $restaurant)
     {
@@ -43,5 +38,7 @@ class ProductService
     {
         $entityManager = $this->managerRegistry->getManager();
         $entityManager->remove($product);
+        $entityManager->flush();
     }
+
 }
