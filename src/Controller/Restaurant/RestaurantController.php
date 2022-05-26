@@ -24,10 +24,9 @@ class RestaurantController extends AbstractFOSRestController
      * @ParamConverter("restaurant", converter="fos_rest.request_body")
      * @Rest\View()
      */
-    public function postRestaurant(Restaurant $restaurant, RestaurantService $restaurantService): Restaurant
+    public function postRestaurant(Restaurant $restaurant, RestaurantService $restaurantService)
     {
         $restaurantService->createRestaurant($restaurant);
-        return $restaurant;
     }
 
     /**

@@ -8,8 +8,11 @@ App\Entity\Restaurant\Restaurant:
     name:
       expose: true
       type: string
-    employees:
+    address:
       expose: true
+      type: string
+    employees:
+      expose: false
       type: ArrayCollection<App\Entity\User\EmployeeUser>
       accessor:
         getter: getEmployees

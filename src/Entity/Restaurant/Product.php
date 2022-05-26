@@ -31,7 +31,7 @@ class Product
     private $restaurant;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Item::class, inversedBy="items")
+     * @ORM\ManyToMany(targetEntity=Item::class, inversedBy="products")
      */
     private $items;
 

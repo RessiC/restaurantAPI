@@ -37,7 +37,7 @@ class Item
     private $restaurant;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Product::class, mappedBy="products")
+     * @ORM\ManyToMany(targetEntity=Product::class, mappedBy="items")
      */
     private $products;
 
