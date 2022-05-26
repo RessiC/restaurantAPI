@@ -37,7 +37,7 @@ class Item
     private $restaurant;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Product::class, mappedBy="products")
+     * @ORM\ManyToMany(targetEntity=Product::class, mappedBy="items")
      */
     private $products;
 
@@ -55,6 +55,13 @@ class Item
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): Item
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -96,7 +103,7 @@ class Item
     /**
      * @return Collection<int, Product>
      */
-    public function getProducts(): Collection
+    public function getProducts(): ?Collection
     {
         return $this->products;
     }
@@ -120,7 +127,7 @@ class Item
     /**
      * @return Collection<int, Order>
      */
-    public function getOrders(): Collection
+    public function getOrders(): ?Collection
     {
         return $this->orders;
     }

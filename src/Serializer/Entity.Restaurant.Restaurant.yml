@@ -8,14 +8,17 @@ App\Entity\Restaurant\Restaurant:
     name:
       expose: true
       type: string
-    employees:
+    address:
       expose: true
+      type: string
+    employees:
+      expose: false
       type: ArrayCollection<App\Entity\User\EmployeeUser>
       accessor:
         getter: getEmployees
         setter: addEmployee
     products:
-      expose: true
+      expose: false
       type: ArrayCollection<App\Entity\Restaurant\Product>
       accessor:
         getter: getProducts
@@ -27,7 +30,7 @@ App\Entity\Restaurant\Restaurant:
         getter: getItems
         setter: addItem
     orders:
-      expose: true
+      expose: false
       type: ArrayCollection<App\Entity\Order>
       accessor:
         getter: getOrders
