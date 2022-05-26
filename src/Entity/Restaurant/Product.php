@@ -45,6 +45,13 @@ class Product
         return $this->id;
     }
 
+    public function setId(int $id): Product
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getName(): ?string
     {
         return $this->name;
@@ -72,7 +79,7 @@ class Product
     /**
      * @return Collection<int, Item>
      */
-    public function getItems(): Collection
+    public function getItems(): ?Collection
     {
         return $this->items;
     }

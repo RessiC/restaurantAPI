@@ -24,10 +24,16 @@ class ItemService
         $entityManager->flush();
     }
 
-    public function editItemForRestaurant(Item $existingItem, Item $modifiedItem, Restaurant $restaurant)
+    public function  editItem2($item)
+    {
+        $entityManager = $this->managerRegistry->getManager();
+        $entityManager->persist($item);
+        $entityManager->flush();
+    }
+    public function editItem(Item $existingItem, Item $modifiedItem)
     {
         $existingItem->setName($modifiedItem->getName());
-        $existingItem->setRestaurant($restaurant);
+        $existingItem->setPrice($modifiedItem->getPrice());
 
         $entityManager = $this->managerRegistry->getManager();
         $entityManager->persist($existingItem);

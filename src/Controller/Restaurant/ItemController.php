@@ -7,6 +7,7 @@ use App\Entity\Restaurant\Restaurant;
 use App\Service\ItemService;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class ItemController extends AbstractFOSRestController
@@ -41,14 +42,13 @@ class ItemController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Put("/restaurants/{id}/items/{item}", name="restaurant_item_edit", requirements={"id"="\d+", "item"="\d+"})
-     * @ParamConverter("item", converter="fos_rest.request_body")
+     * @Rest\Put("/restaurants/{id}/test/{item}", name="restaurant_item_edit", requirements={"id"="\d+", "item"="\d+"})
+     * @ParamConverter("item", class="App\Entity\Restaurant\Item", converter="fos_rest.request_body")
      * @Rest\View()
      */
-    public function editItemForRestaurant(Restaurant $restaurant, Item $existingItem, Item $item, ItemService $itemService): Item
+    public function editItemForRestaurant(Restaurant $restaurant, Item $existingItem, Item $item, ItemService $itemService)
     {
-        $itemService->editItemForRestaurant($existingItem, $item, $restaurant);
-        return $existingItem;
+        //class not found with 2 items (existing and given), ParamConverter error, same issue with @Entity annotation.
     }
 
     /**
@@ -60,13 +60,4 @@ class ItemController extends AbstractFOSRestController
         //todo check if $restaurant has $item
         $itemService->deleteItem($item);
     }
-
-
-
-
-
-
-
-
-
 }

@@ -1,0 +1,22 @@
+App\Entity\Restaurant\Item:
+  exclusion_policy: ALL
+  access_type: public_method
+  properties:
+    id:
+      expose: true
+      type: int
+    name:
+      expose: true
+      type: string
+    price:
+      expose: true
+      type: float
+    restaurant:
+      expose: false
+      type: App\Entity\Restaurant\Restaurant
+    products:
+      expoe: true
+      type: ArrayCollection<App\Entity\Restaurant\Product>
+      accessor:
+        getter: getProducts
+        setter: addProduct

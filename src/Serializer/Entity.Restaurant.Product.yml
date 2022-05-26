@@ -1,0 +1,19 @@
+App\Entity\Restaurant\Product:
+  exclusion_policy: ALL
+  access_type: public_method
+  properties:
+    id:
+      expose: true
+      type: int
+    name:
+      expose: true
+      type: string
+    restaurant:
+      expose: false
+      type: App\Entity\Restaurant\Restaurant
+    items:
+      expose: false
+      type: ArrayCollection<App\Entity\Restaurant\Item>
+      accessor:
+        getter: getItems
+        setter: addItem
