@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\OrderRepository;
 use App\Entity\User\CustomerUser;
+use App\Entity\Restaurant\Item;
 use App\Entity\Restaurant\Restaurant;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\Restaurant;
 
 use App\Entity\User\CustomerUser;
-use App\Entity\Item;
+use App\Entity\Restaurant\Item;
 use App\Entity\Order;
 use App\Entity\Restaurant\Restaurant;
 use PHPUnit\Framework\TestCase;

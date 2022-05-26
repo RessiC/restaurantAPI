@@ -20,15 +20,6 @@ class RestaurantController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Get("/restaurants/{id}", name="restaurant_get", requirements={"id"="\d+"})
-     * @Rest\View()
-     */
-    public function getRestaurant(Restaurant $restaurant): Restaurant
-    {
-        return $restaurant;
-    }
-
-    /**
      * @Rest\Post("/restaurants", name="restaurant_post")
      * @ParamConverter("restaurant", converter="fos_rest.request_body")
      * @Rest\View()
@@ -36,6 +27,15 @@ class RestaurantController extends AbstractFOSRestController
     public function postRestaurant(Restaurant $restaurant, RestaurantService $restaurantService): Restaurant
     {
         $restaurantService->createRestaurant($restaurant);
+        return $restaurant;
+    }
+
+    /**
+     * @Rest\Get("/restaurants/{id}", name="restaurant_get", requirements={"id"="\d+"})
+     * @Rest\View()
+     */
+    public function getRestaurant(Restaurant $restaurant): Restaurant
+    {
         return $restaurant;
     }
 
