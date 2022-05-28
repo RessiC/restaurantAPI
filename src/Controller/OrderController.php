@@ -30,12 +30,32 @@ class OrderController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Post("/restaurants/{id}/orders/{order}", name="restaurant_order_post", requirements={"id"="\d+", "order"="\d+"})
+     * @Rest\Post("/restaurants/{id}/orders", name="restaurant_order_post", requirements={"id"="\d+", "order"="\d+"})
      * @ParamConverter("order", converter="fos_rest.request_body")
      * @Rest\View()
      */
     public function postOrderForRestaurant(Restaurant $restaurant, Order $order, OrderService $orderService): Order
     {
         return $orderService->postOrder($order);
+    }
+
+    /**
+     * @Rest\Put("/restaurants/{id}/orders/{order}", name="restaurant_order_edit", requirements={"id"="\d+", "order"="\d+"})
+     * @ParamConverter("order", converter="fos_rest.request_body")
+     * @Rest\View()
+     */
+    public function editOrderForRestaurant(Restaurant $restaurant, Order $existingOrder, Order $order, OrderService $orderService): Order
+    {
+        $orderService->editOrderForRestaurant($existingOrder, $order, $restaurant);
+        return $existingOrder;
+    }
+
+    /**
+     * @Rest\Delete("/restaurants/{id}/orders/{order}", name="restaurant_order_edit", requirements={"id"="\d+", "order"="\d+"})
+     * @Rest\View()
+     */
+    public function deleteOrder(Restaurant $restaurant, Order $order, OrderService $orderService)
+    {
+        $orderService->deleteOrder($order);
     }
 }

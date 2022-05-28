@@ -24,7 +24,7 @@ class Order
     private $id;
 
     /**
-     * using nullable true for testing, we bill false
+     * using nullable true for testing, will be false
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $orderAt;
@@ -44,8 +44,6 @@ class Order
      * @ORM\Column(type="float", nullable=true)
      */
     private $price;
-
-
 
     /**
      * @ORM\ManyToMany(targetEntity=Item::class, inversedBy="orders")
@@ -76,6 +74,13 @@ class Order
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getOrderAt(): ?\DateTimeInterface
@@ -132,6 +137,11 @@ class Order
     public function getItems(): Collection
     {
         return $this->items;
+    }
+
+    public function setItem(Item $item)
+    {
+        $this->addItem($item);
     }
 
     public function addItem(Item $item): self
