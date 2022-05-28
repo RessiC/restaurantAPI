@@ -1,0 +1,31 @@
+App\Entity\Order:
+  exclusion_policy: ALL
+  access_type: public_method
+  properties:
+    id:
+      expose: true
+      type: int
+    status :
+      expose: true
+      type: string
+    orderAt:
+      expose: true
+      type: datetime
+    readyAt:
+      expose: true
+      type: datetime
+    paidAt:
+      expose: true
+      type: datetime
+    price:
+      expose: true
+      type: float
+    items:
+      expose: true
+      type: ArrayCollection<App\Entity\Restaurant\Item>
+      accessor:
+        getter: getItems
+        setter: setItem
+    user:
+      expose: true
+      type: App\Entity\User\User

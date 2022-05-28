@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\User\User;
 use App\Repository\OrderRepository;
-use App\Entity\User\CustomerUser;
 use App\Entity\Restaurant\Item;
 use App\Entity\Restaurant\Restaurant;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -24,7 +24,8 @@ class Order
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * using nullable true for testing, will be false
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $orderAt;
 
@@ -34,27 +35,24 @@ class Order
     private $readyAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $paidAt;
 
     /**
+     * using nullable true for testing, we bill false
      * @ORM\Column(type="float", nullable=true)
      */
     private $price;
 
     /**
-     * @ORM\ManyToOne(targetEntity=CustomerUser::class, inversedBy="orders")
-     */
-    private $customerUser;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Item::class, inversedBy="orders")
+     * @ORM\JoinTable(name="order_item")
      */
     private $items;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $status;
 
@@ -62,6 +60,11 @@ class Order
      * @ORM\ManyToOne(targetEntity=Restaurant::class, inversedBy="orders")
      */
     private $restaurant;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="orders")
+     */
+    private $user;
 
     public function __construct()
     {
@@ -71,6 +74,13 @@ class Order
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getOrderAt(): ?\DateTimeInterface
@@ -121,24 +131,17 @@ class Order
         return $this;
     }
 
-    public function getCustomerUser(): ?CustomerUser
-    {
-        return $this->customerUser;
-    }
-
-    public function setCustomerUser(?CustomerUser $customerUser): self
-    {
-        $this->customerUser = $customerUser;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Item>
      */
     public function getItems(): Collection
     {
         return $this->items;
+    }
+
+    public function setItem(Item $item)
+    {
+        $this->addItem($item);
     }
 
     public function addItem(Item $item): self
@@ -177,6 +180,18 @@ class Order
     public function setRestaurant(?Restaurant $restaurant): self
     {
         $this->restaurant = $restaurant;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
