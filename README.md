@@ -3,7 +3,7 @@
 
 This is a personal project which aims to show my skills for back-end development. 
 
-##RestaurantAPI and RestaurantApp
+## RestaurantAPI and RestaurantApp
 
 RestaurantAPI use fosrest-bundle with jms_serializer and auth with JWT. This API provide data for RestaurantApp.
 
