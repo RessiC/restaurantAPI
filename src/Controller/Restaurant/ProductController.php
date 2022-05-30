@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class ProductController extends AbstractFOSRestController
 {
     /**
-     * @Rest\Get("/restaurants/{id}/products", name="restaurant_products_get", requirements={"id"="\d+"})
+     * @Rest\Get("/api/restaurants/{id}/products", name="restaurant_products_get", requirements={"id"="\d+"})
      * @Rest\View()
      */
     public function getProductsByRestaurant(Restaurant $restaurant)

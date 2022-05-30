@@ -7,13 +7,12 @@ use App\Entity\Restaurant\Restaurant;
 use App\Service\ItemService;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class ItemController extends AbstractFOSRestController
 {
     /**
-     * @Rest\Get("/restaurants/{id}/items", name="restaurant_items_get", requirements={"id"="\d+"})
+     * @Rest\Get("/api/restaurants/{id}/items", name="restaurant_items_get", requirements={"id"="\d+"})
      * @Rest\View()
      */
     public function getItemsByRestaurant(Restaurant $restaurant)
@@ -22,7 +21,7 @@ class ItemController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Post("/restaurants/{id}/items", name="restaurant_item_post", requirements={"id"="\d+"})
+     * @Rest\Post("/api/restaurants/{id}/items", name="restaurant_item_post", requirements={"id"="\d+"})
      * @ParamConverter("item", converter="fos_rest.request_body")
      * @Rest\View()
      */
@@ -33,7 +32,7 @@ class ItemController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Get("/restaurants/{id}/items/{item}", name="restaurant_item_get", requirements={"id"="\d+", "item"="\d+"})
+     * @Rest\Get("/api/restaurants/{id}/items/{item}", name="restaurant_item_get", requirements={"id"="\d+", "item"="\d+"})
      * @Rest\View()
      */
     public function getItemByRestaurant(Restaurant $restaurant, Item $item)
@@ -42,7 +41,7 @@ class ItemController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Put("/restaurants/{id}/test/{item}", name="restaurant_item_edit", requirements={"id"="\d+", "item"="\d+"})
+     * @Rest\Put("/api/restaurants/{id}/test/{item}", name="restaurant_item_edit", requirements={"id"="\d+", "item"="\d+"})
      * @ParamConverter("item", class="App\Entity\Restaurant\Item", converter="fos_rest.request_body")
      * @Rest\View()
      */
@@ -52,7 +51,7 @@ class ItemController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Delete("restaurants/{id}/items/{item}", name="restaurant_item_delete", requirements={"id"="\d+", "item"="\d+"})
+     * @Rest\Delete("/api/restaurants/{id}/items/{item}", name="restaurant_item_delete", requirements={"id"="\d+", "item"="\d+"})
      * @Rest\View()
      */
     public function deleteItem(Restaurant $restaurant, Item $item, ItemService $itemService)

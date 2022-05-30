@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Entity\User\CustomerUser;
+use App\Entity\User\User;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -40,11 +40,11 @@ class CreateUserCommand extends Command
             '============'
         ]);
 
-        $customerUser = new CustomerUser();
+        $customerUser = new User();
         $hashedPassword = $this->passwordHasher->hashPassword($customerUser, $input->getArgument('password'));
         $customerUser->setEmail($input->getArgument("email"));
         $customerUser->setPassword($hashedPassword);
-        $customerUser->setRoles(CustomerUser::ROLE_CUSTOMER);
+        $customerUser->setRoles(User::ROLE_USER);
 
         $entityManager = $this->manager->getManager();
         $entityManager->persist($customerUser);

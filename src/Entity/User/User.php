@@ -2,7 +2,7 @@
 
 namespace App\Entity\User;
 
-use App\Entity\order;
+use App\Entity\Order;
 use App\Repository\User\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
