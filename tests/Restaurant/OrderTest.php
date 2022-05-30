@@ -2,7 +2,7 @@
 
 namespace App\Tests\Restaurant;
 
-use App\Entity\User\CustomerUser;
+use App\Entity\User\User;
 use App\Entity\Restaurant\Item;
 use App\Entity\Order;
 use App\Entity\Restaurant\Restaurant;
@@ -13,15 +13,15 @@ class OrderTest extends TestCase
     public function testCreate()
     {
         $order = new Order();
-        $customerUser = new CustomerUser();
+        $customerUser = new User();
         $orderAt = new \DateTime('2022-01-01');
 
         $order->setOrderAt($orderAt);
-        $order->setCustomerUser($customerUser);
+        $order->setUser($customerUser);
 
         $this->assertSame($orderAt, $order->getOrderAt());
         $this->assertInstanceOf(Order::class, $order);
-        $this->assertInstanceOf(CustomerUser::class, $order->getCustomerUser());
+        $this->assertInstanceOf(User::class, $order->getUser());
         $this->assertInstanceOf(\DateTime::class, $order->getOrderAt());
     }
 

@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class OrderController extends AbstractFOSRestController
 {
     /**
-     * @Rest\Get("/restaurants/{id}/orders", name="restaurant_orders_get", requirements={"id"="\d+"})
+     * @Rest\Get("/api/restaurants/{id}/orders", name="restaurant_orders_get", requirements={"id"="\d+"})
      * @Rest\View()
      */
     public function getOrdersByRestaurant(Restaurant $restaurant)
@@ -21,7 +21,7 @@ class OrderController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Get("/restaurants/{id}/orders/{order}", name="restaurant_order_get", requirements={"id"="\d+", "order"="\d+"})
+     * @Rest\Get("/api/restaurants/{id}/orders/{order}", name="restaurant_order_get", requirements={"id"="\d+", "order"="\d+"})
      * @Rest\View();
      */
     public function getOrderByRestaurant(Restaurant $restaurant, Order $order)
@@ -30,7 +30,7 @@ class OrderController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Post("/restaurants/{id}/orders", name="restaurant_order_post", requirements={"id"="\d+", "order"="\d+"})
+     * @Rest\Post("/api/restaurants/{id}/orders", name="restaurant_order_post", requirements={"id"="\d+", "order"="\d+"})
      * @ParamConverter("order", converter="fos_rest.request_body")
      * @Rest\View()
      */
@@ -40,7 +40,7 @@ class OrderController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Put("/restaurants/{id}/orders/{order}", name="restaurant_order_edit", requirements={"id"="\d+", "order"="\d+"})
+     * @Rest\Put("/api/restaurants/{id}/orders/{order}", name="restaurant_order_edit", requirements={"id"="\d+", "order"="\d+"})
      * @ParamConverter("order", converter="fos_rest.request_body")
      * @Rest\View()
      */
@@ -51,7 +51,7 @@ class OrderController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Delete("/restaurants/{id}/orders/{order}", name="restaurant_order_edit", requirements={"id"="\d+", "order"="\d+"})
+     * @Rest\Delete("/api/restaurants/{id}/orders/{order}", name="restaurant_order_edit", requirements={"id"="\d+", "order"="\d+"})
      * @Rest\View()
      */
     public function deleteOrder(Restaurant $restaurant, Order $order, OrderService $orderService)

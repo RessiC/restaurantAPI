@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class RestaurantController extends AbstractFOSRestController
 {
     /**
-     * @Rest\Get("/restaurants", name="restaurant_get_all")
+     * @Rest\Get("/api/restaurants", name="restaurant_get_all")
      * @Rest\View()
      */
     public function getRestaurants(RestaurantService $restaurantService)
@@ -30,7 +30,7 @@ class RestaurantController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Get("/restaurants/{id}", name="restaurant_get", requirements={"id"="\d+"})
+     * @Rest\Get("/api/restaurants/{id}", name="restaurant_get", requirements={"id"="\d+"})
      * @Rest\View()
      */
     public function getRestaurant(Restaurant $restaurant): Restaurant
@@ -39,7 +39,7 @@ class RestaurantController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Put("/restaurants/{id}", name="restaurant_edit", requirements={"id"="\d+"})
+     * @Rest\Put("/api/restaurants/{id}", name="restaurant_edit", requirements={"id"="\d+"})
      * @ParamConverter("restaurant", converter="fos_rest.request_body")
      * @Rest\View()
      */
@@ -50,7 +50,7 @@ class RestaurantController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Delete("/restaurants/{id}", name="restaurant_delete")
+     * @Rest\Delete("/api/restaurants/{id}", name="restaurant_delete")
      * @Rest\View()
      */
     public function deleteRestaurant(Restaurant  $restaurant, RestaurantService $restaurantService)
